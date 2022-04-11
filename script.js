@@ -1,30 +1,35 @@
-let contenido = document.querySelector('#contenido')
+let contenido = document.querySelector('.contenido')
 
-function traer() {
-    fetch("https://pokeapi.co/api/v2/pokemon")
+function traerPokemon(id) {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
         .then(resultadoTabla => resultadoTabla.json()) // FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
-        .then(datos => {
-            tabla(datos)
-            console.log (datos)
+        .then((datos) => {
+            tabla(datos);
+        });
 
-        })// VAMOS A MOSTRAR LA INFORMACIÓN
 }
-
+// FUNCION PARA QUE NOS MUESTRE UNA CANTIDAD ESPECIFICA DE POKEMONES
+function traerPokemons(number){
+    for (let i = 1; i <= number; i++){
+         traerPokemon(i);
+    }
+}
+// ACA ES DONDE SE ARMA LA ESTRUCTURA, datos ES EL NOMBRE QUE LE DAMOS, SPRITES, NAME E ID DE LA LINEA 23 A 25 SON DATOS EXCLUSIVOS DE LA API QUE NOS DAN
+// EL NUMERO NOMBRE E IMAGEN DEL POKEMON
 function tabla(datos) {
+        
+    contenido.innerHTML += `                
+            <tr>
+            
+                <td> <img src=' ${ datos.sprites.front_default }'/></td>
+                <th scope="row">${ datos.name }</th>
+                <td>${ datos.id }</td>
 
-    contenido.innerHTML = ''
-    datos.results.map(elemento => {
-
-        contenido.innerHTML += `                
-                <tr>
-                    <th scope="row">${ elemento.name }</th>
-                    <td>${ elemento.tipo }</td>
-                    <td>${ elemento.numero }</td>
-                </tr>
+            </tr>
                 
-                `
-    })
+            `
 }
 
-traer();
+// SE LLAMA LA FUNCION Y SE INDICA CUANTOS DATOS SE MOSTRARA EN LA PANTALLA, EN ESTE CASO 10, SI SE CAMBIA SE MUESTRAN MAS O MENOS
 
+traerPokemons(10);
