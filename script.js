@@ -1,46 +1,17 @@
 let contenido = document.querySelector('.contenido')
 
-// PARA PODER UTILIZAR ANTERIOR Y SIGUIENTE 
+function traerPokemon(id) {
 
-const previous = document.querySelector("#previous");
-const next = document.querySelector("#next");
-
-// DESDE DONDE SE EMPIEZA A CONTAR Y EL LIMITE QUE MOSTRARA 
-
-let offset = 1;
-let limit = 8;
-
-/*EVENTO DE CLICKEAR ANTERIOR CON UN IF QUE LE INDICA QUE NO PUEDE IR AL ANTERIOR SI SE 
- EMPIEZA EN EL PRIMERO (1) Y EL EVENTO SIGUIENTE, DONDE SE MUESTRA LOS SIGUIENTES 9 POST */
-
-previous.addEventListener("click", () => {
-    if (offset != 1) {
-      offset -= 9;
-      removeChildNodes(contenido);
-      traerPokemons(offset, limit);
-    }
-  });
-  
-  next.addEventListener("click", () => {
-    offset += 9;
-    removeChildNodes(contenido);
-    traerPokemons(offset, limit);
-  });
-
-
-// FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
-
-  
-  function traerPokemon(id) {
-      fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-      .then(resultadoTabla => resultadoTabla.json()) 
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+        .then(resultadoTabla => resultadoTabla.json()) // FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
         .then((datos) => {
+            pokemones.push(datos);// SE MOVIO PARA PODER OCUPAR FUNCION TABLA SIN MODIFICAR ORIGINAL
             tabla(datos);
         });
 }
-// FUNCION QUE NOS INDICARA CUANTOS POKEMONES SE IRAN SUMANDO O MOSTRANDO
-function traerPokemons(offset, limit){
-    for (let i = offset; i <= offset + limit; i++){
+// FUNCION PARA QUE NOS MUESTRE UNA CANTIDAD ESPECIFICA DE POKEMONES
+function traerPokemons(number){
+    for (let i = 1; i <= number; i++){
          traerPokemon(i);
     }
 }
@@ -48,7 +19,7 @@ function traerPokemons(offset, limit){
 // EL NUMERO NOMBRE E IMAGEN DEL POKEMON
 let pokemones = [];
 function tabla(datos) {
-    pokemones.push(datos);
+    
     contenido.innerHTML += `
     <div class="card-father col-12 col-md-6 col-lg-4 mb-3 ">
 				<div class="card d-flex flex-row shadow rounded">
@@ -66,17 +37,10 @@ function tabla(datos) {
     `
 }
 
-
-function removeChildNodes(parent) {
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
-}
+// SE LLAMA LA FUNCION Y SE INDICA CUANTOS DATOS SE MOSTRARA EN LA PANTALLA, EN ESTE CASO 10, SI SE CAMBIA SE MUESTRAN MAS O MENOS
 
 
-// SE LLAMA LA FUNCION, SE CAMBIA EL 10 POR EL offset y limit
-
-traerPokemons(offset, limit);
+traerPokemons(10);
 let favoritos = []
 function agregarFavorito(idPokemon){
     nuevoFavorito = pokemones.filter(item=>item.id === idPokemon)
@@ -113,3 +77,39 @@ function imprimirFavorito(){
 
     })
 }
+
+const btnSearch =  document.getElementById("btn-search")
+
+btnSearch.addEventListener("click", (e) => {
+
+   const inputSearch = document.getElementById("input-search")
+
+   const textSearch = inputSearch.value
+
+   const newPokemones = pokemones.filter(function(pokemon){
+
+    if(pokemon.name.includes(`${textSearch}`)) {
+
+        return  pokemon 
+    }
+
+    
+
+   })
+
+   contenido.innerHTML = ""
+
+   newPokemones.forEach(function(pokemon){
+
+    tabla(pokemon)
+
+   }
+   
+   
+   )
+   
+})
+
+
+
+
