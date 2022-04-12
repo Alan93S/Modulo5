@@ -1,15 +1,46 @@
 let contenido = document.querySelector('.contenido')
 
-function traerPokemon(id) {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-        .then(resultadoTabla => resultadoTabla.json()) // FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
+// PARA PODER UTILIZAR ANTERIOR Y SIGUIENTE 
+
+const previous = document.querySelector("#previous");
+const next = document.querySelector("#next");
+
+// DESDE DONDE SE EMPIEZA A CONTAR Y EL LIMITE QUE MOSTRARA 
+
+let offset = 1;
+let limit = 8;
+
+/*EVENTO DE CLICKEAR ANTERIOR CON UN IF QUE LE INDICA QUE NO PUEDE IR AL ANTERIOR SI SE 
+ EMPIEZA EN EL PRIMERO (1) Y EL EVENTO SIGUIENTE, DONDE SE MUESTRA LOS SIGUIENTES 9 POST */
+
+previous.addEventListener("click", () => {
+    if (offset != 1) {
+      offset -= 9;
+      removeChildNodes(contenido);
+      traerPokemons(offset, limit);
+    }
+  });
+  
+  next.addEventListener("click", () => {
+    offset += 9;
+    removeChildNodes(contenido);
+    traerPokemons(offset, limit);
+  });
+
+
+// FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
+
+  
+  function traerPokemon(id) {
+      fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+      .then(resultadoTabla => resultadoTabla.json()) 
         .then((datos) => {
             tabla(datos);
         });
 }
-// FUNCION PARA QUE NOS MUESTRE UNA CANTIDAD ESPECIFICA DE POKEMONES
-function traerPokemons(number){
-    for (let i = 1; i <= number; i++){
+// FUNCION QUE NOS INDICARA CUANTOS POKEMONES SE IRAN SUMANDO O MOSTRANDO
+function traerPokemons(offset, limit){
+    for (let i = offset; i <= offset + limit; i++){
          traerPokemon(i);
     }
 }
@@ -35,10 +66,17 @@ function tabla(datos) {
     `
 }
 
-// SE LLAMA LA FUNCION Y SE INDICA CUANTOS DATOS SE MOSTRARA EN LA PANTALLA, EN ESTE CASO 10, SI SE CAMBIA SE MUESTRAN MAS O MENOS
+
+function removeChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
 
 
-traerPokemons(10);
+// SE LLAMA LA FUNCION, SE CAMBIA EL 10 POR EL offset y limit
+
+traerPokemons(offset, limit);
 let favoritos = []
 function agregarFavorito(idPokemon){
     nuevoFavorito = pokemones.filter(item=>item.id === idPokemon)
