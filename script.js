@@ -33,12 +33,12 @@ function tabla(datos) {
     <div class="card-father col-12 col-md-6 col-lg-4 mb-3">
 				<div class="card d-flex flex-row shadow rounded">
 					<img src="${ datos.sprites.front_default}" class="card__img img-fluid" alt="">
-					<div class="card-body d-flex justify-content-center align-items-center p-0">
+					<div class="card-body d-flex justify-content-center flex-column align-items-center p-0">
+                    <p class="h5 m-0">#${datos.id}</p>
                     <h2 class="card-title h5 m-1">${datos.name}</h2>
-					<p class="h5 m-0">#${datos.id}</p>
 					</div>
 					<div class="d-flex flex-column justify-content-center p-2">
-						<a href="#" class="btn btn-primary card__button mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Más detalles">Detalles</a>
+						<a href="#" class="btn btn-primary h6 card__button mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Más detalles">Detalles</a>
 						<a href="#" class="btn btn-danger card__button" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir a favoritos">Favorito</a>
 					</div>
 				</div>
