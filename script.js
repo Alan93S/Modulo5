@@ -38,12 +38,14 @@ function tabla(datos) {
 					<p class="h5 m-0">#${datos.id}</p>
 					</div>
 					<div class="d-flex flex-column justify-content-center p-2">
-						<a href="#" class="btn btn-primary card__button mb-1">Detalles</a>
-						<a href="#" class="btn btn-danger card__button">Favorito</a>
+						<a href="#" class="btn btn-primary card__button mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Más detalles">Detalles</a>
+						<a href="#" class="btn btn-danger card__button" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir a favoritos">Favorito</a>
 					</div>
 				</div>
 			</div>
     `
+
+    
 }
 
 // SE LLAMA LA FUNCION Y SE INDICA CUANTOS DATOS SE MOSTRARA EN LA PANTALLA, EN ESTE CASO 10, SI SE CAMBIA SE MUESTRAN MAS O MENOS
