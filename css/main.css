@@ -1,26 +1,2 @@
-* {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.navbar-brand {
-  font-weight: 900;
-}
-
-.nav-link:hover {
-  background-color: #0f42fc;
-  border-radius: .25rem;
-}
-
-.logo {
-  width: 40px;
-  padding-right: 10px;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #dbedff;
-}
+*{padding:0;margin:0;-webkit-box-sizing:border-box;box-sizing:border-box}.navbar-brand{font-weight:900}.nav-link:hover{background-color:#0f42fc;border-radius:.25rem}.logo{width:40px;padding-right:10px}body{font-family:'Roboto', sans-serif;background-color:#dbedff}
 /*# sourceMappingURL=main.css.map */
