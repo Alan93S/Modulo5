@@ -30,7 +30,7 @@ function tabla(datos) {
     //         `
 
     contenido.innerHTML += `
-    <div class="card-father col-12 col-md-6 col-lg-4 mb-3">
+    <div class="card-father col-12 col-md-6 col-lg-4 mb-3 ">
 				<div class="card d-flex flex-row shadow rounded">
 					<img src="${ datos.sprites.front_default}" class="card__img img-fluid" alt="">
 					<div class="card-body d-flex justify-content-center flex-column align-items-center p-0">
