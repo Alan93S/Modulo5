@@ -1,9 +1,11 @@
 let contenido = document.querySelector('.contenido')
 
 function traerPokemon(id) {
+
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
         .then(resultadoTabla => resultadoTabla.json()) // FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
         .then((datos) => {
+            pokemones.push(datos);// SE MOVIO PARA PODER OCUPAR FUNCION TABLA SIN MODIFICAR ORIGINAL
             tabla(datos);
         });
 }
@@ -17,7 +19,7 @@ function traerPokemons(number){
 // EL NUMERO NOMBRE E IMAGEN DEL POKEMON
 let pokemones = [];
 function tabla(datos) {
-    pokemones.push(datos);
+    
     contenido.innerHTML += `
     <div class="card-father col-12 col-md-6 col-lg-4 mb-3 ">
 				<div class="card d-flex flex-row shadow rounded">
@@ -75,3 +77,38 @@ function imprimirFavorito(){
 
     })
 }
+
+const btnSearch =  document.getElementById("btn-search")
+
+btnSearch.addEventListener("click", (e) => {
+
+   const inputSearch = document.getElementById("input-search")
+
+   const textSearch = inputSearch.value
+
+   const newPokemones = pokemones.filter(function(pokemon){
+
+    if(pokemon.name.includes(`${textSearch}`)) {
+
+        return pokemon 
+    }
+
+    
+
+   })
+
+   contenido.innerHTML = ""
+
+   newPokemones.forEach(function(pokemon){
+
+    tabla(pokemon)
+
+   }
+   
+   )
+   
+})
+
+
+
+
