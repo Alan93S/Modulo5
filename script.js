@@ -90,7 +90,7 @@ btnSearch.addEventListener("click", (e) => {
 
     if(pokemon.name.includes(`${textSearch}`)) {
 
-        return pokemon 
+        return  pokemon 
     }
 
     
