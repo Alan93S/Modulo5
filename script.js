@@ -66,21 +66,25 @@ function tabla(datos) {
 					</div>
 				</div>
 			</div>
+
+
             <div class="modal fade" id="exampleModal${datos.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Nombre : ${datos.name}</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   
-               
-                <img src="${ datos.sprites.front_default}" class="card__img img-fluid" alt="">
+
+                <img style=height:200px src="${ datos.sprites.other.dream_world.front_default}" class="card__img img-fluid rounded mx-auto d-block" alt="">
+                <br>
+                <hr>
+
                 <div class="card-body d-flex justify-content-center flex-column align-items-center p-0">
-                <p class="h5 m-0">#${datos.id}</p>
-                <p class="h5 m-0">#${datos.weight}</p>
-                <h2 class="card-title h5 m-1">${datos.name}</h2>
+                <p class="h5 m-0">Peso: ${datos.weight}</p>
+                <h2 class="card-title h5 m-1">Altura: ${datos.height}</h2>
                 </div>
                     
                 </div>
