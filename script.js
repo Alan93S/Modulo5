@@ -194,5 +194,7 @@ function mostrarFavoritos() {
 }
 
 
+window.addEventListener("load",function(){
+    document.getElementById("wrapper").classList.toggle("wrapper2")
 
-
+})
