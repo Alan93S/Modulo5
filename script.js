@@ -152,13 +152,13 @@ function imprimirFavorito(){
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                  
                 <div class="fondopoke d-flex justify-content-center">
-                <img src="${ datos.sprites.front_default}" class="card__img img-fluid" alt="">
+                <img src="${ datos.sprites.other.dream_world.front_default}" class="card__img img-fluid" alt="">
                 </div>
+                <hr>
                 
                 <div class="card-body d-flex justify-content-center flex-column align-items-center p-0">
-                <h2 class="card-title h5 m-1">${datos.name}</h2>
+
                 <p class="h5 m-0">#${datos.id}</p>
                 <p class="h5 m-0">Peso: ${datos.weight}</p>
                 <p class="h5 m-0">Altura: ${datos.height}</p>
