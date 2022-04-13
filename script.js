@@ -1,5 +1,32 @@
 let contenido = document.querySelector('.contenido')
 
+// CONSTANTES QUE LLAMAN AL INDEX SIGUIENTE Y ANTERIOR
+const previous = document.querySelector("#previous");
+const next = document.querySelector("#next");
+
+// LIMITA A 8 DESDE EL 9 PARA QUE SE MUESTREN LAS CARTAS, SI AUMENTA EL LIMITE MOSTRARA MAS POR PANTALLA
+let limit = 8;
+let offset = 1;
+
+// EVENTOS DE CLICK A LOS BOTONES ANTERIOR Y SIGUIENTE
+
+previous.addEventListener("click", () => {
+    if (offset != 1) {
+      offset -= 9;
+      removeChildNodes(contenido);
+      traerPokemons(offset, limit);
+    }
+  });
+  
+  next.addEventListener("click", () => {
+    offset += 9;
+    removeChildNodes(contenido);
+    traerPokemons(offset, limit);
+  });
+  
+
+
+
 function traerPokemon(id) {
 
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
@@ -10,8 +37,8 @@ function traerPokemon(id) {
         });
 }
 // FUNCION PARA QUE NOS MUESTRE UNA CANTIDAD ESPECIFICA DE POKEMONES
-function traerPokemons(number){
-    for (let i = 1; i <= number; i++){
+function traerPokemons(offset, limit){
+    for (let i = offset; i <= offset + limit; i++){
          traerPokemon(i);
     }
 }
@@ -22,7 +49,6 @@ let pokemones = [];
 function tabla(datos) {
     
     contenido.innerHTML += `
-    
     <div class="card-father col-12 col-md-6 col-lg-4 mb-3 ">
 				<div class="card d-flex flex-row shadow rounded">
 					<img src="${ datos.sprites.front_default}" class="card__img img-fluid" alt="">
@@ -68,9 +94,19 @@ function tabla(datos) {
     `
 }
 
-// SE LLAMA LA FUNCION Y SE INDICA CUANTOS DATOS SE MOSTRARA EN LA PANTALLA, EN ESTE CASO 10, SI SE CAMBIA SE MUESTRAN MAS O MENOS
+// FUNCION PARA QUE NO SE ACUMULEN POR PANTALLA LOS PROXIMAS CARTAS Y ANTES DE MOSTRAR SE ELIMINEN
+// Y DESPUES LA MUESTRA
 
-traerPokemons(10);
+function removeChildNodes(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
+// ACA SE INVOCA
+
+traerPokemons(offset, limit);
+
+
 let favoritos = []
 function agregarFavorito(idPokemon){
     nuevoFavorito = pokemones.filter(item=>item.id === idPokemon)
@@ -153,14 +189,6 @@ function mostrarFavoritos() {
     }
 }
 
-// function prueba(){
-//     let prueba1 = 15;
-//     let prueba2 = 10
-//     if (typeof(prueba1) == typeof(prueba2)){
-//         alert("son iguales");
-//     }else{
-//         alert("son distintos")
-//     }
-// }
-// prueba()
+
+
 
