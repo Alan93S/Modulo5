@@ -49,12 +49,15 @@ function agregarFavorito(idPokemon){
     }else{
         favoritos.push(nuevoFavorito[0])
     }
-    
   imprimirFavorito()
 }
-
+//Pinta los favoritos en el HTML
 function imprimirFavorito(){
     document.querySelector(".favoritos").innerHTML= "";
+
+    document.querySelector(".favoritos").innerHTML += `<h3 class=" col-12 text-center m-3">Pokémones Favoritos</h3>`;
+    
+    
     favoritos.forEach(datos=>{
         document.querySelector(".favoritos").innerHTML += `
     
@@ -73,43 +76,47 @@ function imprimirFavorito(){
 			</div>
     `
     })
+    if(favoritos.length == 0){
+        document.querySelector(".favoritos").innerHTML= "";
+    }
+    
 }
+//Permite eliminar los favoritos dando click al boton eliminar 
 function eliminarFavorito(idPokemon) {
     favoritos = favoritos.filter(item => item.id != idPokemon)
     document.querySelector(".favoritos").innerHTML= "";
     imprimirFavorito()
 }
-
 const btnSearch =  document.getElementById("btn-search")
 
 btnSearch.addEventListener("click", (e) => {
-
    const inputSearch = document.getElementById("input-search")
-
    const textSearch = inputSearch.value
-
    const newPokemones = pokemones.filter(function(pokemon){
 
     if(pokemon.name.includes(`${textSearch}`)) {
-
         return  pokemon 
     }
-
-
    })
-
    contenido.innerHTML = ""
-
    newPokemones.forEach(function(pokemon){
-
     tabla(pokemon)
+   })
+});
+//Muestra los favoritos en pantalla al darle click a favoritos en el nav
+let x = document.querySelector(".mostrar");
+x.style.display = "none";
 
-   }
-   
-   
-   )
-   
-})
+function mostrarFavoritos() {
+    
+    x = document.querySelector(".mostrar");
+
+    if (x.style.display === "none") {
+        x.style.display = "flex";
+    } else {
+        x.style.display = "none";
+    }
+}
 
 
 
