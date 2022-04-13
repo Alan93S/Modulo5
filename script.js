@@ -47,6 +47,7 @@ function tabla(datos) {
       </div>
       <div class="modal-body">
       <img src="${ datos.sprites.front_default}" class="card__img img-fluid" alt="">
+      <h2 class="card-title h5 m-1">${datos.name}</h2>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -115,6 +116,12 @@ const btnSearch =  document.getElementById("btn-search")
 btnSearch.addEventListener("click", (e) => {
    const inputSearch = document.getElementById("input-search")
    const textSearch = inputSearch.value
+   console.log(textSearch)
+   let aaa = "";
+   console.log(typeof(textSearch));
+   console.log(typeof(aaa));
+
+
    const newPokemones = pokemones.filter(function(pokemon){
 
     if(pokemon.name.includes(`${textSearch}`)) {
@@ -141,6 +148,14 @@ function mostrarFavoritos() {
     }
 }
 
-
-
+// function prueba(){
+//     let prueba1 = 15;
+//     let prueba2 = 10
+//     if (typeof(prueba1) == typeof(prueba2)){
+//         alert("son iguales");
+//     }else{
+//         alert("son distintos")
+//     }
+// }
+// prueba()
 

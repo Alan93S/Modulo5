@@ -35,8 +35,8 @@
 
 				</ul>
 				<div class="d-flex">
-					<input class="form-control me-2" id="input-search" type="search" placeholder="Buscar..." aria-label="Search">
-					<button class="btn btn-danger" id="btn-search" type="button">Buscar</button>
+					<input class="form-control me-2" id="input-search" type="search" placeholder="Buscar..." aria-label="Search" onkeydown="return /[a-z]/i.test(event.key)">
+					<button  class="btn btn-danger" id="btn-search" type="button">Buscar</button>
 				</div>
 			</div>
 		</div>
