@@ -72,19 +72,22 @@ function tabla(datos) {
                 </div>
                 <div class="modal-body">
                   
-               
+                <div class="fondopoke d-flex justify-content-center">
                 <img src="${ datos.sprites.front_default}" class="card__img img-fluid" alt="">
+                </div>
+                
                 <div class="card-body d-flex justify-content-center flex-column align-items-center p-0">
+                <h2 class="card-title h5 m-1">${datos.name}</h2>
                 <p class="h5 m-0">#${datos.id}</p>
                 <p class="h5 m-0">Peso: ${datos.weight}</p>
                 <p class="h5 m-0">Altura: ${datos.height}</p>
-                <h2 class="card-title h5 m-1">${datos.name}</h2>
+                
                 </div>
                     
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                  
                 </div>
               </div>
             </div>
@@ -134,12 +137,42 @@ function imprimirFavorito(){
                     <h2 class="card-title h5 m-1">${datos.name}</h2>
 					</div>
 					<div class="d-flex flex-column justify-content-center p-2">
-						<a class="btn btn-primary h6 card__button mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Más detalles">Detalles</a>
-						<a class="btn btn-danger card__button" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir a favoritos" onclick="eliminarFavorito(${datos.id})">Eliminar</a>
+                    <button type="button" class="btn h6 btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal${datos.id}">Detalles</button>
+						<a class="btn btn-danger card__button" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar de favoritos" onclick="eliminarFavorito(${datos.id})">Eliminar</a>
 					</div>
 				</div>
 			</div>
+            <div class="modal fade" id="exampleModal${datos.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                  
+                <div class="fondopoke d-flex justify-content-center">
+                <img src="${ datos.sprites.front_default}" class="card__img img-fluid" alt="">
+                </div>
+                
+                <div class="card-body d-flex justify-content-center flex-column align-items-center p-0">
+                <h2 class="card-title h5 m-1">${datos.name}</h2>
+                <p class="h5 m-0">#${datos.id}</p>
+                <p class="h5 m-0">Peso: ${datos.weight}</p>
+                <p class="h5 m-0">Altura: ${datos.height}</p>
+                
+                </div>
+                    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
     `
+
     })
     if(favoritos.length == 0){
         document.querySelector(".favoritos").innerHTML= "";
