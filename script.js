@@ -32,10 +32,7 @@ function tabla(datos) {
 					</div>
         
 					<div class="d-flex flex-column justify-content-center p-2">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal${datos.id}">
-                    Detalles
-                  </button>
-					
+                    <button type="button" class="btn h6 btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal${datos.id}">Detalles</button>      
 						<a href="#" class="btn btn-danger card__button" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir a favoritos" onclick="agregarFavorito(${datos.id})">Favorito</a>
 					</div>
 				</div>
@@ -53,7 +50,8 @@ function tabla(datos) {
                 <img src="${ datos.sprites.front_default}" class="card__img img-fluid" alt="">
                 <div class="card-body d-flex justify-content-center flex-column align-items-center p-0">
                 <p class="h5 m-0">#${datos.id}</p>
-                <p class="h5 m-0">#${datos.weight}</p>
+                <p class="h5 m-0">Peso: ${datos.weight}</p>
+                <p class="h5 m-0">Altura: ${datos.height}</p>
                 <h2 class="card-title h5 m-1">${datos.name}</h2>
                 </div>
                     
