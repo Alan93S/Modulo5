@@ -27,8 +27,8 @@ function tabla(datos) {
                     <h2 class="card-title h5 m-1">${datos.name}</h2>
 					</div>
 					<div class="d-flex flex-column justify-content-center p-2">
-						<a href="#" class="btn btn-primary h6 card__button mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Más detalles">Detalles</a>
-						<a href="#" class="btn btn-danger card__button" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir a favoritos" onclick="agregarFavorito(${datos.id})">Favorito</a>
+						<a class="btn btn-primary h6 card__button mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Más detalles">Detalles</a>
+						<a class="btn btn-danger card__button" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir a favoritos" onclick="agregarFavorito(${datos.id})">Favorito</a>
 					</div>
 				</div>
 			</div>
@@ -37,20 +37,17 @@ function tabla(datos) {
 
 // SE LLAMA LA FUNCION Y SE INDICA CUANTOS DATOS SE MOSTRARA EN LA PANTALLA, EN ESTE CASO 10, SI SE CAMBIA SE MUESTRAN MAS O MENOS
 
-
 traerPokemons(10);
 let favoritos = []
 function agregarFavorito(idPokemon){
     nuevoFavorito = pokemones.filter(item=>item.id === idPokemon)
     let favoritoExiste = favoritos.some(item=>item.id === idPokemon)
     if (favoritoExiste){
-        alert("El producto ya esta en los favoritos");
+        alert("El pokémon ya esta en tus favoritos");
     }else{
         favoritos.push(nuevoFavorito[0])
     }
     
-    console.log("ejecutando")
-    console.log(favoritos);
   imprimirFavorito()
 }
 
@@ -58,6 +55,7 @@ function imprimirFavorito(){
     document.querySelector(".favoritos").innerHTML= "";
     favoritos.forEach(datos=>{
         document.querySelector(".favoritos").innerHTML += `
+    
     <div class="card-father col-12 col-md-6 col-lg-4 mb-3 ">
 				<div class="card d-flex flex-row shadow rounded">
 					<img src="${ datos.sprites.front_default}" class="card__img img-fluid" alt="">
@@ -66,12 +64,16 @@ function imprimirFavorito(){
                     <h2 class="card-title h5 m-1">${datos.name}</h2>
 					</div>
 					<div class="d-flex flex-column justify-content-center p-2">
-						<a href="#" class="btn btn-primary h6 card__button mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Más detalles">Detalles</a>
-						<a href="#" class="btn btn-danger card__button" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir a favoritos" onclick="agregarFavorito(${datos.id})">Favorito</a>
+						<a class="btn btn-primary h6 card__button mb-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Más detalles">Detalles</a>
+						<a class="btn btn-danger card__button" data-bs-toggle="tooltip" data-bs-placement="top" title="Añadir a favoritos" onclick="eliminarFavorito(${datos.id})">Eliminar</a>
 					</div>
 				</div>
 			</div>
     `
-
     })
+}
+function eliminarFavorito(idPokemon) {
+    favoritos = favoritos.filter(item => item.id != idPokemon)
+    document.querySelector(".favoritos").innerHTML= "";
+    imprimirFavorito()
 }
