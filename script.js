@@ -1,3 +1,4 @@
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>TABLA ABPRO3<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 let con = document.querySelector('#con')
 
 function trae() {
@@ -16,8 +17,7 @@ function nombre(datos) {
     datos.map(elemento => {
 
         con.innerHTML += `                
-
-        
+      
                 <tr>
                     <th scope="row">${ elemento.userId }</th>
                     <td>${ elemento.id }</td>
@@ -28,16 +28,7 @@ function nombre(datos) {
                 `
     })
 }
-
-
-
-
-
-
-
-
-
-// >>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>TABLA ABPRO3<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 let contenido = document.querySelector('.contenido')
 
