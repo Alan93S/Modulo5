@@ -1,3 +1,44 @@
+let con = document.querySelector('#con')
+
+function trae() {
+    fetch("tabla.json")
+        .then(resultadoTabla => resultadoTabla.json()) // FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
+        .then(datos => {
+            nombre(datos)
+            console.log (datos)
+
+        })// VAMOS A MOSTRAR LA INFORMACIÓN
+}
+
+function nombre(datos) {
+
+    con.innerHTML = ''
+    datos.map(elemento => {
+
+        con.innerHTML += `                
+
+        
+                <tr>
+                    <th scope="row">${ elemento.userId }</th>
+                    <td>${ elemento.id }</td>
+                    <td>${ elemento.title }</td>
+                    <td>${ elemento.body}</td>
+                </tr>
+                
+                `
+    })
+}
+
+
+
+
+
+
+
+
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 let contenido = document.querySelector('.contenido')
 
 // CONSTANTES QUE LLAMAN AL INDEX SIGUIENTE Y ANTERIOR
@@ -227,3 +268,7 @@ window.addEventListener("load",function(){
     document.getElementById("wrapper").classList.toggle("wrapper2")
 
 })
+
+
+
+
