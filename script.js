@@ -18,16 +18,60 @@ function nombre(datos) {
 
         con.innerHTML += `                
       
-                <tr>
-                    <th scope="row">${ elemento.userId }</th>
-                    <td>${ elemento.id }</td>
-                    <td>${ elemento.title }</td>
-                    <td>${ elemento.body}</td>
-                </tr>
+                <div class="card-father col-12 col-md-6 col-lg-4 mb-3 ">
+                <div class="card d-flex flex-row shadow rounded">
+                  <div class="card-body d-flex justify-content-center flex-column align-items-center p-0">
+                            <p class="h5 m-0">${elemento.userId}</p>
+                            <h2 class="card-title h5 m-1">${elemento.title}</h2>
+                  </div>
+                
+                  <div class="d-flex flex-column justify-content-center p-2">
+                            <button type="button" class="btn h6 btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#exampleModal${datos.id}">Detalles</button>      
+                  </div>
+                </div>
+              </div>
+        
+        
+                    <div class="modal fade" id="exampleModal${datos.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Nombre : ${datos.name}</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                        <hr>
+                        
+                        <div class="card-body d-flex justify-content-center flex-column align-items-center p-0">
+        
+                        <p class="h5 m-0">${elemento.body}</p>
+                        
+                        </div>
+                            
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        
+
+
+
+
+
+
+
+
+
+
                 
                 `
     })
 }
+trae();
 // >>>>>>>>>>>>>>>>>>>>>>>>>>>TABLA ABPRO3<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 let contenido = document.querySelector('.contenido')
