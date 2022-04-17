@@ -1,3 +1,62 @@
+
+
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>TABLA ABPRO3<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+let con = document.querySelector('#con')
+
+function trae() {
+    fetch("tabla.json")
+        .then(resultadoTabla => resultadoTabla.json()) // FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
+        .then(dato => {
+            nombre(dato)
+            console.log (dato)
+
+        })// VAMOS A MOSTRAR LA INFORMACIÓN
+}
+
+function nombre(dato) {
+
+    con.innerHTML = ''
+    dato.map(elemento => {
+
+        con.innerHTML += `                
+      
+                <div class="card-father col-6 col-md-6 col-lg-4 mb-3 ">
+                <div class="card d-flex flex-row shadow rounded">
+                  <div class="card-body d-flex justify-content-center flex-column align-items-center p-0">
+                            <p class="h5 m-0">${elemento.id}</p>
+                            <h2 class="card-title h5 m-1">${elemento.title}</h2>
+                  </div>  
+                  
+                  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  detalles
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>${elemento.body}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>        
+                `
+    })
+}
+trae();
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>TABLA ABPRO3<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 let contenido = document.querySelector('.contenido')
 
 // CONSTANTES QUE LLAMAN AL INDEX SIGUIENTE Y ANTERIOR
@@ -227,3 +286,7 @@ window.addEventListener("load",function(){
     document.getElementById("wrapper").classList.toggle("wrapper2")
 
 })
+
+
+
+
