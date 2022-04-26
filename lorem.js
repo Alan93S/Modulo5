@@ -36,6 +36,10 @@
     }
     ];
 
+
+
+
+
     let con = document.querySelector('#con')
 
     // function trae() {
@@ -47,21 +51,37 @@
               const getDatos = () => {
     
                 return new Promise((resolve, reject) => {
-    
+
+                  if (datos.length === 0) {
+
+                    reject(new Error('No hay datos'))
+                  }
+                 
                   setTimeout(() =>{
-    
+                    
                     resolve (datos);
+
+                    
                   }, 3000);
     
                 })
     
               }
     
-          
-    
-    
-    getDatos().then ((datos) => console.log(datos));
+    // getDatos()
+    // .then ((datos) => console.log(datos));
 
+    async function asincrono() {
+
+      try {
+        const wait = await getDatos();
+      console.log (wait)
+
+      } catch (err) {
+        console.log(err);
+      }
+  }
+  asincrono ()
 
 function nombre(datos) {
 
