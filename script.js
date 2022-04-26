@@ -64,7 +64,7 @@ const previous = document.querySelector("#previous");
 const next = document.querySelector("#next");
 
 // LIMITA A 8 DESDE EL 9 PARA QUE SE MUESTREN LAS CARTAS, SI AUMENTA EL LIMITE MOSTRARA MAS POR PANTALLA
-let limit = 8;
+let limit = 20;
 let offset = 1;
 
 // EVENTOS DE CLICK A LOS BOTONES ANTERIOR Y SIGUIENTE
@@ -287,6 +287,30 @@ window.addEventListener("load",function(){
 
 })
 
+// ASYNC - PROMESA - SETTIMEOUT
 
+function trae(getDatos) {
+  fetch("tabla.json")
+      .then(resultadoTabla => resultadoTabla.json()) // FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
+      .then(dato => {
+          nombre(dato)
+          
+          const getDatos = () => {
+
+            return new Promise((resolve, reject) => {
+
+              setTimeout(() =>{
+
+                resolve (dato);
+              }, 3000);
+
+            })
+
+          }
+
+      })
+}
+
+getDatos().then ((dato) => console.log(dato));
 
 
