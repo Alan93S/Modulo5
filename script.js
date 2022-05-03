@@ -247,10 +247,20 @@ function eliminarFavorito(idPokemon) {
     imprimirFavorito()
 }
 const btnSearch =  document.getElementById("btn-search")
+//condicionales para validar busqueda.
+const validar = new RegExp('^[A-Z]+$', 'i');  
 
 btnSearch.addEventListener("click", (e) => {
    const inputSearch = document.getElementById("input-search")
    const textSearch = inputSearch.value
+   if ((inputSearch.value === "" )){
+    alert("no puede estar vacio");
+    return false; }
+
+   else if ((!validar.test(inputSearch.value))){
+    alert("ingresar solo letras");
+    return false;
+  }
 
 
    const newPokemones = pokemones.filter(function(pokemon){
@@ -289,28 +299,28 @@ window.addEventListener("load",function(){
 
 // ASYNC - PROMESA - SETTIMEOUT
 
-function trae(getDatos) {
-  fetch("tabla.json")
-      .then(resultadoTabla => resultadoTabla.json()) // FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
-      .then(dato => {
-          nombre(dato)
+// function trae(getDatos) {
+//   fetch("tabla.json")
+//       .then(resultadoTabla => resultadoTabla.json()) // FORMATO QUE VAMOS A RECIBIR NUESTRA INFORMACIÓN
+//       .then(dato => {
+//           nombre(dato)
           
-          const getDatos = () => {
+//           const getDatos = () => {
 
-            return new Promise((resolve, reject) => {
+//             return new Promise((resolve, reject) => {
 
-              setTimeout(() =>{
+//               setTimeout(() =>{
 
-                resolve (dato);
-              }, 3000);
+//                 resolve (dato);
+//               }, 3000);
 
-            })
+//             })
 
-          }
+//           }
 
-      })
-}
+//       })
+// }
 
-getDatos().then ((dato) => console.log(dato));
+// getDatos().then ((dato) => console.log(dato));
 
 
